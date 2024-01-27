@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@frontend/shared-contracts": ["libs/shared/contracts/src/index.ts"],
       "@frontend/state-store": ["libs/state/store/src/index.ts"]
     }
   },

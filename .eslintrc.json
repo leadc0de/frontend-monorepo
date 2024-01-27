@@ -18,18 +18,10 @@
               }
             ]
           }
-        ]
+        ],
+        "semi": ["error", "always"],
+        "brace-style": ["error", "1tbs"]
       }
-    },
-    {
-      "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nx/typescript"],
-      "rules": {}
-    },
-    {
-      "files": ["*.js", "*.jsx"],
-      "extends": ["plugin:@nx/javascript"],
-      "rules": {}
     }
   ]
 }

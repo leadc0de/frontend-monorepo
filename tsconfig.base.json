@@ -15,8 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@frontend/shared-contracts": ["libs/shared/contracts/src/index.ts"],
-      "@frontend/state-store": ["libs/state/store/src/index.ts"]
+      "@leadcode/contracts": ["libs/shared/contracts/src/index.ts"],
+      "@leadcode/state/store": ["libs/state/store/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

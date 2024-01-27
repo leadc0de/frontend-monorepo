@@ -1,13 +1,24 @@
-import { StrictMode } from 'react';
-import * as ReactDOM from 'react-dom/client';
+import { StrictMode } from 'react'
+import App from './app/app'
+import { createRoot } from 'react-dom/client'
+import { setupStore } from '@leadcode/state/store'
+import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
+import { TooltipProvider } from '@radix-ui/react-tooltip'
 
-import App from './app/app';
+const container = document.getElementById('root') || document.createElement('div')
+const root = createRoot(container)
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const store = setupStore()
+
 root.render(
   <StrictMode>
-    <App />
+    <Provider store={store}>
+      <BrowserRouter>
+        <TooltipProvider>
+          <App />
+        </TooltipProvider>
+      </BrowserRouter>
+    </Provider>
   </StrictMode>
-);
+)

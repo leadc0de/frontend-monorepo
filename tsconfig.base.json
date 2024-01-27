@@ -15,7 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@frontend/shared-ui": ["libs/shared/ui/src/index.ts"],
       "@leadcode/contracts": ["libs/shared/contracts/src/index.ts"],
+      "@leadcode/domains/users": ["libs/domains/users/src/index.ts"],
+      "@leadcode/layout": ["libs/pages/layout/src/index.ts"],
       "@leadcode/state/store": ["libs/state/store/src/index.ts"]
     }
   },

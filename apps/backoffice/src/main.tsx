@@ -5,6 +5,7 @@ import { setupStore } from '@leadcode/state/store'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { TooltipProvider } from '@radix-ui/react-tooltip'
+import { ModalProvider } from '@leadcode/ui'
 
 const container = document.getElementById('root') || document.createElement('div')
 const root = createRoot(container)
@@ -16,7 +17,9 @@ root.render(
     <Provider store={store}>
       <BrowserRouter>
         <TooltipProvider>
-          <App />
+          <ModalProvider>
+            <App />
+          </ModalProvider>
         </TooltipProvider>
       </BrowserRouter>
     </Provider>

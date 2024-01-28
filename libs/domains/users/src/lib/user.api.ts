@@ -10,6 +10,9 @@ export const userApi = createApi({
     getUser: builder.query<any, void>({
       query: () => `/authentication/me`
     }),
+    getUsers: builder.query<any, void>({
+      query: () => `/users`,
+    }),
     login: builder.mutation<any, { email: string, password: string }>({
       query: (credentials) => ({
         url: `/authentication/login`,
@@ -21,4 +24,8 @@ export const userApi = createApi({
   })
 })
 
-export const { useGetUserQuery, useLoginMutation } = userApi
+export const {
+  useGetUserQuery,
+  useLoginMutation,
+  useGetUsersQuery
+} = userApi

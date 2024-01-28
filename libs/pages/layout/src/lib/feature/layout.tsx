@@ -5,7 +5,7 @@ export interface LayoutProps {
   topBar?: boolean
 }
 
-export function Layout({ topBar, children }: PropsWithChildren<LayoutProps>) {
+export function Layout({ topBar = true, children }: PropsWithChildren<LayoutProps>) {
   return (
     <LayoutPage topBar={topBar}>
       { children }

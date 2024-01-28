@@ -7,7 +7,7 @@ export const userAdapter = createEntityAdapter<UserEntity>()
 
 
 export const initialUserState: UserState = {
-  isLoading: false,
+  isLoading: true,
   isAuthenticated: false
 }
 

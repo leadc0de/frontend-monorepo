@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
 import { ButtonIcon, ButtonIconStyle, Tooltip } from '@leadcode/ui'
-import { HomeIcon } from '@heroicons/react/20/solid'
+import { HomeIcon, ChatBubbleLeftRightIcon, UserGroupIcon } from '@heroicons/react/20/solid'
 import { classNames } from '@leadcode/utils'
 import { IconAwesomeEnum } from '@leadcode/enums'
 import { MenuAccountFeature } from '../feature/menu-account-feature'
@@ -10,6 +10,8 @@ export function Navigation () {
   const { pathname } = useLocation()
 
   const matchHomeRoute = pathname.includes('/home')
+  const matchAccountsRoute = pathname.includes('/accounts')
+  const matchBlogRoute = pathname.includes('/blogs')
   const matchSettingsRoute = pathname.includes(`/settings`)
 
   return (
@@ -32,6 +34,38 @@ export function Navigation () {
               )}
             >
               <HomeIcon
+                className={classNames(
+                  'w-5',
+                )}
+              />
+            </Link>
+          </Tooltip>
+
+          <Tooltip content={"Accounts"} side="right">
+            <Link
+              to="/accounts/users/general"
+              className={classNames(
+                'flex rounded-md p-3 mx-auto dark:hover:text-gray-100 hover:bg-neutral-200 dark:hover:bg-indigo-500 hover:text-brand-500 ease-in-out duration-200 dark:text-gray-400 ',
+                matchAccountsRoute ? 'bg-neutral-200 !text-brand-500 dark:bg-indigo-500' : 'text-gray-400'
+              )}
+            >
+              <UserGroupIcon
+                className={classNames(
+                  'w-5',
+                )}
+              />
+            </Link>
+          </Tooltip>
+
+          <Tooltip content={"Blogs"} side="right">
+            <Link
+              to="/blogs/general"
+              className={classNames(
+                'flex rounded-md p-3 mx-auto dark:hover:text-gray-100 hover:bg-neutral-200 dark:hover:bg-indigo-500 hover:text-brand-500 ease-in-out duration-200 dark:text-gray-400 ',
+                matchBlogRoute ? 'bg-neutral-200 !text-brand-500 dark:bg-indigo-500' : 'text-gray-400'
+              )}
+            >
+              <ChatBubbleLeftRightIcon
                 className={classNames(
                   'w-5',
                 )}

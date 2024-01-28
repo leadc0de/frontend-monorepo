@@ -1,1 +1,2 @@
-export * from './lib/shared-ui';
+export * from './lib/styles/main.scss'
+export * from './lib/components'

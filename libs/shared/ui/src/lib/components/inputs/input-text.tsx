@@ -69,6 +69,7 @@ export function InputText ({
 							ref={customRef}
 							name={name}
               id={label}
+							autoComplete="off"
               className={`input__value ${rightElement ? '!pr-9' : ''}`}
               type={currentType}
               disabled={disabled}

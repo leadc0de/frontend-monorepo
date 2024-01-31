@@ -124,7 +124,17 @@ export function InputSelect({
     return (
       <div role="option" aria-labelledby={id}>
         <components.Option {...props}>
-          <div>{props.data.icon}</div>
+          {isMulti ? (
+            <span className="input-select__checkbox">
+              {props.isSelected && <Icon name={IconAwesomeEnum.CHECK} className="text-xs" />}
+            </span>
+          ) : props.isSelected ? (
+            <Icon name={IconAwesomeEnum.CHECK} className="text-green-500" />
+          ) : props.data.icon ? (
+            <div className="w-4 h-full flex items-center justify-center">{props.data.icon}</div>
+          ) : (
+            <Icon name={IconAwesomeEnum.CHECK} className="opacity-0" />
+          )}
           <label id={id} className="ml-2 truncate">
             {props.label}
           </label>
@@ -232,6 +242,7 @@ export function InputSelect({
             menuPortal: (base) => ({
               ...base,
               pointerEvents: 'auto',
+              zIndex: 100,
               // Prevent misplacement with intercom banner
               marginTop: `-${document.body.style.marginTop ? document.body.style.marginTop : 0}`,
             }),

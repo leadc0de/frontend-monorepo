@@ -29,7 +29,7 @@ const PopoverContent = forwardRef<ElementRef<typeof PopoverPrimitive.Content>, P
           {...props}
           ref={forwardedRef}
           className={twMerge(
-            'bg-white p-4 shadow-xl rounded border border-neutral-200 outline-none data-[state=open]:data-[side=top]:animate-slidein-down-sm-faded data-[state=open]:data-[side=right]:animate-slidein-left-sm-faded data-[state=open]:data-[side=bottom]:animate-slidein-up-sm-faded data-[state=open]:data-[side=left]:animate-slidein-right-sm-faded',
+            'bg-white p-4 z-[99] shadow-xl rounded border border-neutral-200 outline-none data-[state=open]:data-[side=top]:animate-slidein-down-sm-faded data-[state=open]:data-[side=right]:animate-slidein-left-sm-faded data-[state=open]:data-[side=bottom]:animate-slidein-up-sm-faded data-[state=open]:data-[side=left]:animate-slidein-right-sm-faded',
             className
           )}
         />

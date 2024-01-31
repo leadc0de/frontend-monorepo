@@ -6,12 +6,22 @@ export const userApi = createApi({
     baseUrl: 'http://localhost:3333/',
     credentials: "include"
   }),
+  tagTypes: ['users'],
   endpoints: (builder) => ({
     getUser: builder.query<any, void>({
       query: () => `/authentication/me`
     }),
     getUsers: builder.query<any, void>({
       query: () => `/users`,
+      providesTags: ['users']
+    }),
+    storeUser: builder.mutation<any, any>({
+      query: (payload) => ({
+        url: '/users',
+        method: 'POST',
+        body: payload
+      }),
+      invalidatesTags: ['users']
     }),
     login: builder.mutation<any, { email: string, password: string }>({
       query: (credentials) => ({
@@ -27,5 +37,6 @@ export const userApi = createApi({
 export const {
   useGetUserQuery,
   useLoginMutation,
-  useGetUsersQuery
+  useGetUsersQuery,
+  useStoreUserMutation
 } = userApi

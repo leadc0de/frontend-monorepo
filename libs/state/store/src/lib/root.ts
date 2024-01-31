@@ -1,9 +1,10 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit'
-import {userApi, userReducer} from "@leadcode/domains/users";
+import {roleApi, userApi, userReducer} from "@leadcode/domains/users";
 
 export const rootReducer = combineReducers({
   user: userReducer,
-  [userApi.reducerPath]: userApi.reducer
+  [userApi.reducerPath]: userApi.reducer,
+  [roleApi.reducerPath]: roleApi.reducer
 })
 
 export function setupStore(preloadedState?: never) {
@@ -15,6 +16,7 @@ export function setupStore(preloadedState?: never) {
         serializableCheck: true
       })
         .concat(userApi.middleware)
+        .concat(roleApi.middleware)
   })
 }
 

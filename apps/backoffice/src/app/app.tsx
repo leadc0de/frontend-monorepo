@@ -9,6 +9,7 @@ import { Layout } from '@leadcode/layout'
 import { PageAuth } from '@leadcode/pages/login'
 import { ProtectedRoute, useAuth } from '@leadcode/auth'
 import { LoadingScreen } from '@leadcode/ui';
+import {useOidc, useOidcAccessToken} from "@axa-fr/react-oidc";
 
 export default function App() {
   const { isLoading } = useSelector(getUserState)
@@ -16,21 +17,21 @@ export default function App() {
   const dispatch = useDispatch<AppDispatch>()
   const { verifyCreds } = useAuth()
   const { pathname } = useLocation()
-
-  const query = verifyCreds()
+  const { login, isAuthenticated } = useOidc()
+  const { accessTokenPayload, accessToken } = useOidcAccessToken()
 
   useEffect(() => {
-    if (query.status === 'rejected') {
-      navigate('/authentication/login', {
-        replace: true
-      })
+    if (!isAuthenticated) {
+      login('/')
     }
-    
-    if (!query.data) return
+  }, [isAuthenticated])
 
-    dispatch(userActions.setUser({ user: query.data }))
-  }, [query])
- 
+  useEffect(() => {
+    console.log(accessToken, accessTokenPayload)
+    if (accessTokenPayload) {
+      dispatch(userActions.setUser({ user: accessTokenPayload, token: accessToken }))
+    }
+  }, [])
 
   if (isLoading && !pathname.includes('authentication')) {
     return (

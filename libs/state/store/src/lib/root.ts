@@ -1,10 +1,11 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit'
-import {roleApi, userApi, userReducer} from "@leadcode/domains/users";
+import {permissionApi, roleApi, userApi, userReducer} from "@leadcode/domains/users";
 
 export const rootReducer = combineReducers({
   user: userReducer,
   [userApi.reducerPath]: userApi.reducer,
-  [roleApi.reducerPath]: roleApi.reducer
+  [roleApi.reducerPath]: roleApi.reducer,
+  [permissionApi.reducerPath]: permissionApi.reducer
 })
 
 export function setupStore(preloadedState?: never) {
@@ -17,6 +18,7 @@ export function setupStore(preloadedState?: never) {
       })
         .concat(userApi.middleware)
         .concat(roleApi.middleware)
+        .concat(permissionApi.middleware)
   })
 }
 

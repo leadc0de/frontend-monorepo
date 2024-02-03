@@ -43,7 +43,7 @@ export function Navigation () {
 
           <Tooltip content={"Accounts"} side="right">
             <Link
-              to="/accounts/users/general"
+              to="/accounts/users"
               className={classNames(
                 'flex rounded-md p-3 mx-auto dark:hover:text-gray-100 hover:bg-neutral-200 dark:hover:bg-indigo-500 hover:text-brand-500 ease-in-out duration-200 dark:text-gray-400 ',
                 matchAccountsRoute ? 'bg-neutral-200 !text-brand-500 dark:bg-indigo-500' : 'text-gray-400'

@@ -1,10 +1,16 @@
 import {createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
+import {useOidc, useOidcAccessToken} from "@axa-fr/react-oidc";
+import {RootState} from "@leadcode/state/store";
 export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:3333/',
-    credentials: "include"
+    credentials: "include",
+    prepareHeaders: (headers, { getState }) => {
+      const { user } = getState() as RootState
+      console.log(user)
+      headers.set('Authorization', `Bearer ${user.token}`)
+    }
   }),
   tagTypes: ['users'],
   endpoints: (builder) => ({
@@ -14,6 +20,9 @@ export const userApi = createApi({
     getUsers: builder.query<any, void>({
       query: () => `/users`,
       providesTags: ['users']
+    }),
+    getUserById: builder.query<any, string>({
+      query: (userId) => `/users/${userId}`
     }),
     storeUser: builder.mutation<any, any>({
       query: (payload) => ({
@@ -31,12 +40,13 @@ export const userApi = createApi({
       })
 
     })
-  })
+  }),
 })
 
 export const {
   useGetUserQuery,
   useLoginMutation,
   useGetUsersQuery,
+  useGetUserByIdQuery,
   useStoreUserMutation
 } = userApi

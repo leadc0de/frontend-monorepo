@@ -23,21 +23,22 @@ export function TableRowUser(props: TableRowUserProps) {
       filter={[]}
       columnsWidth={columnsWidth}
       disabled={isLoading}
+      className="text-slate-500 text-sm"
     >
       <>
-        <div className="ml-4 text-slate-700">
+        <div className="ml-4 font-medium">
           {data.email}
         </div>
 
         <div>
-          <span className="text-slate-700 ml-4">{data.username}</span>
+          <span className="ml-4">{data.username}</span>
         </div>
         <div>
-          <span className="text-slate-700 ml-4">{data.firstname}</span>
+          <span className=" ml-4">{data.firstname}</span>
         </div>
 
         <div>
-          <span className="text-slate-700 ml-4">{data.lastname}</span>
+          <span className="ml-4">{data.lastname}</span>
         </div>
       </>
     </TableRow>

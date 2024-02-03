@@ -19,6 +19,7 @@ export const userSlice = createSlice({
       state.isLoading = false
       state.isAuthenticated = !!action.payload.user
       state.user = action.payload.user
+      state.token = action.payload.token
     }
   },
   extraReducers: (builder) => {}

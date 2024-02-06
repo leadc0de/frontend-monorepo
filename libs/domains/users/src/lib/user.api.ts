@@ -1,17 +1,21 @@
-import {createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import {useOidc, useOidcAccessToken} from "@axa-fr/react-oidc";
-import {RootState} from "@leadcode/state/store";
+import {BaseQueryFn, createApi, FetchArgs, fetchBaseQuery, FetchBaseQueryError} from '@reduxjs/toolkit/query/react'
+import { type RootState } from '@leadcode/state/store'
+import {useStore} from "react-redux";
+import {userActions} from "./user.slice";
+
+
+const baseQuery = fetchBaseQuery({
+  baseUrl: 'http://localhost:3333/',
+  credentials: "include",
+  prepareHeaders: (headers, { getState }) => {
+    const { user } = getState() as RootState
+    headers.set('Authorization', `Bearer ${user.token}`)
+  }
+})
+
 export const userApi = createApi({
   reducerPath: 'userApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:3333/',
-    credentials: "include",
-    prepareHeaders: (headers, { getState }) => {
-      const { user } = getState() as RootState
-      console.log(user)
-      headers.set('Authorization', `Bearer ${user.token}`)
-    }
-  }),
+  baseQuery,
   tagTypes: ['users'],
   endpoints: (builder) => ({
     getUser: builder.query<any, void>({
@@ -32,13 +36,18 @@ export const userApi = createApi({
       }),
       invalidatesTags: ['users']
     }),
-    login: builder.mutation<any, { email: string, password: string }>({
+    deleteUserById: builder.mutation<any, string>({
+      query: (userId) => ({
+        url: `/users/${userId}`,
+        method: 'DELETE',
+      })
+    }),
+    login: builder.mutation<any, { username: string, password: string }>({
       query: (credentials) => ({
         url: `/authentication/login`,
         method: 'POST',
         body: credentials
       })
-
     })
   }),
 })
@@ -48,5 +57,6 @@ export const {
   useLoginMutation,
   useGetUsersQuery,
   useGetUserByIdQuery,
-  useStoreUserMutation
+  useStoreUserMutation,
+  useDeleteUserByIdMutation
 } = userApi

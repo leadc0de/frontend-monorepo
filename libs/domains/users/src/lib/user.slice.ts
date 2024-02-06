@@ -8,7 +8,7 @@ export const userAdapter = createEntityAdapter<UserEntity>()
 
 export const initialUserState: UserState = {
   isLoading: true,
-  isAuthenticated: false
+  isAuthenticated: false,
 }
 
 export const userSlice = createSlice({
@@ -20,7 +20,7 @@ export const userSlice = createSlice({
       state.isAuthenticated = !!action.payload.user
       state.user = action.payload.user
       state.token = action.payload.token
-    }
+    },
   },
   extraReducers: (builder) => {}
 })

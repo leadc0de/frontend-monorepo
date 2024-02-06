@@ -15,23 +15,27 @@ export default function App() {
   const { isLoading } = useSelector(getUserState)
   const navigate = useNavigate()
   const dispatch = useDispatch<AppDispatch>()
-  const { verifyCreds } = useAuth()
   const { pathname } = useLocation()
-  const { login, isAuthenticated } = useOidc()
-  const { accessTokenPayload, accessToken } = useOidcAccessToken()
+  const { isAuthenticated, login } = useOidc()
+  const { accessToken, accessTokenPayload } = useOidcAccessToken()
 
   useEffect(() => {
     if (!isAuthenticated) {
-      login('/')
+      login('/home')
     }
   }, [isAuthenticated])
 
+
   useEffect(() => {
     console.log(accessToken, accessTokenPayload)
-    if (accessTokenPayload) {
-      dispatch(userActions.setUser({ user: accessTokenPayload, token: accessToken }))
+    if (accessToken && accessTokenPayload) {
+      dispatch(userActions.setUser({
+        user: accessTokenPayload,
+        token: accessToken
+      }))
     }
-  }, [])
+  }, [accessToken, accessTokenPayload]);
+
 
   if (isLoading && !pathname.includes('authentication')) {
     return (
@@ -42,7 +46,7 @@ export default function App() {
   return (
     <div>
       <Routes>
-        <Route path='/authentication/*' element={<PageAuth />} />
+
         {ROUTER.map((route) =>
           match(route)
             .when((r) => r.layout, (r) => (
@@ -64,7 +68,17 @@ export default function App() {
               />
             ))
         )}
+
+       {/* <Route path="/*" element={<Navigate to="/home" replace />} />*/}
       </Routes>
     </div>
+  )
+}
+
+function AuthCallback() {
+  const navigate = useNavigate()
+
+  return (
+    <LoadingScreen />
   )
 }

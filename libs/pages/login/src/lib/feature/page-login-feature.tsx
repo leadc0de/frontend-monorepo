@@ -26,12 +26,14 @@ export default function PageLoginFeature() {
   useEffect(() => {
     console.log(result)
     if (result.status === 'fulfilled') {
-      dispatch(userActions.setUser(result.data))
+
+
+      sessionStorage.setItem('oidc.auth', JSON.stringify(result.data))
 
       navigate('/home')
     }
   }, [result])
-  
+
 
   useRedirectIfLogged()
 
@@ -41,13 +43,13 @@ export default function PageLoginFeature() {
 
   const onSubmit = methods.handleSubmit((data) => {
     console.log(data)
-    login({ email: data.email, password: data.password })
+    login({ username: data.email, password: data.password })
   })
 
   return (
     <FormProvider {...methods}>
       <LayoutLogin>
-        <Login 
+        <Login
           disabled={disabled}
           onSubmit={onSubmit}
         />

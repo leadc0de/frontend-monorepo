@@ -8,9 +8,10 @@ export interface MenuAccountProps {
     email?: string
     picture?: string
   }
+  handleLogout: () => void
 }
 
-export function MenuAccount ({ user }: MenuAccountProps) {
+export function MenuAccount ({ user, handleLogout }: MenuAccountProps) {
   const navigate = useNavigate()
 
   const menus: MenuData = [
@@ -20,8 +21,8 @@ export function MenuAccount ({ user }: MenuAccountProps) {
           itemContentCustom: (
             <div className="w-full flex items-center justify-between">
               <div className="flex">
-                <Avatar 
-                   className="mr-3"
+                <Avatar
+                   className="mr-3 object-cover"
                    size={40}
                    url={user?.picture}
                    username={user.username || ''}
@@ -51,17 +52,17 @@ export function MenuAccount ({ user }: MenuAccountProps) {
               Logout
             </div>
           ),
-          onClick: () => navigate('/'),
+          onClick: () => handleLogout(),
         }
       ]
     }
   ]
 
   return (
-    <Menu 
+    <Menu
       trigger={
         <div>
-          <Avatar 
+          <Avatar
             size={40}
             username={user?.username || ''}
             url={user?.picture}

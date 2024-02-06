@@ -10,11 +10,11 @@ export function CreateUserModal({ onClose }: CreateUserModalProps) {
   const methods = useForm({
     mode: 'onChange',
     defaultValues: {
-      email: '',
-      username: '',
-      firstname: '',
-      lastname: '',
-      password: '',
+      email: 'prout@gmail.com',
+      username: 'prout',
+      firstname: 'Prout',
+      lastname: 'Land',
+      password: 'proutprout',
       roleIds: []
     }
   })
@@ -71,13 +71,13 @@ export function CreateUserModal({ onClose }: CreateUserModalProps) {
             )}
           />
 
-          <Controller 
+          <Controller
             name="password"
             rules={{
               required: 'Veuillez indiquer une valeur'
             }}
             render={({ field, fieldState }) => (
-              <InputText 
+              <InputText
                 name="password"
                 value={field.value}
                 onChange={field.onChange}
@@ -89,13 +89,13 @@ export function CreateUserModal({ onClose }: CreateUserModalProps) {
           />
 
           <div className="grid grid-cols-2 gap-3">
-            <Controller 
+            <Controller
               name="firstname"
               rules={{
                 required: 'Veuillez indiquer une valeur'
               }}
               render={({ field, fieldState }) => (
-                <InputText 
+                <InputText
                   name="firstname"
                   value={field.value}
                   onChange={field.onChange}
@@ -104,13 +104,13 @@ export function CreateUserModal({ onClose }: CreateUserModalProps) {
                 />
               )}
             />
-            <Controller 
+            <Controller
               name="lastname"
               rules={{
                 required: 'Veuillez indiquer une valeur'
               }}
               render={({ field, fieldState }) => (
-                <InputText 
+                <InputText
                   name="lastname"
                   value={field.value}
                   onChange={field.onChange}
@@ -121,10 +121,10 @@ export function CreateUserModal({ onClose }: CreateUserModalProps) {
             />
           </div>
           {rolesResponse && (
-            <Controller 
+            <Controller
               name="roleIds"
               render={({ field }) => (
-                <InputSelect 
+                <InputSelect
                   isSearchable={true}
                   options={rolesResponse.data.map((role) => {
                     return {
@@ -141,7 +141,7 @@ export function CreateUserModal({ onClose }: CreateUserModalProps) {
               )}
             />
           )}
-         
+
         </div>
 
       </ModalCrud>

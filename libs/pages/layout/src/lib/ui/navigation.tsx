@@ -5,6 +5,8 @@ import { HomeIcon, ChatBubbleLeftRightIcon, UserGroupIcon } from '@heroicons/rea
 import { classNames } from '@leadcode/utils'
 import { IconAwesomeEnum } from '@leadcode/enums'
 import { MenuAccountFeature } from '../feature/menu-account-feature'
+import {useSelector} from "react-redux";
+import {getUserState} from "@leadcode/domains/users";
 
 export function Navigation () {
   const { pathname } = useLocation()
@@ -16,7 +18,7 @@ export function Navigation () {
 
   return (
     <div className='w-16 h-screen dark:bg-neutral-650 bg-white flex flex-col'>
-      <Link 
+      <Link
         to={"/home"}
         className="flex w-16 h-16 items-center justify-center border-b z-10 dark:border-neutral-500 border-neutral-200"
       >

@@ -15,5 +15,6 @@ export * from './truncate/truncate'
 export * from './header/header'
 export * from './tabs/tabs'
 export * from './modals'
+export * from './navigation-left/navigation-left'
 
 export * from './empty-state'

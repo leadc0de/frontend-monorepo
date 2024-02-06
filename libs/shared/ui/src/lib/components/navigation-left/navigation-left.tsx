@@ -33,51 +33,53 @@ export const linkClassName = (pathname: string, url?: string, badge?: string) =>
       : 'text-neutral-350 hover:text-neutral-400 hover:bg-neutral-150'
   } ${badge ? 'justify-between' : ''} `
 
-  export function NavigationLeft(props: NavigationLeftProps) {
-    const { title, links, link, className = '' } = props
-  
-    const { pathname } = useLocation()
-  
-    const linkContent = (link: NavigationLeftLinkProps) => (
-      <>
-        {link.icon && (
-          <div className="flex items-center mr-4">
-            <Icon name={link.icon} className="inline-block w-3" />
-          </div>
-        )}
-        {link.title}
-      </>
-    )
-  
-    return (
-      <div className={`flex flex-col px-5 ${className}`}>
-        <div className="flex justify-between items-center mb-4">
-          {title && <span className="text-neutral-350 uppercase text-2xs font-bold pl-3">{title}</span>}
-          {link && (
-            <span className="link cursor-pointer text-sm text-brand-500 font-medium" onClick={() => link.onClick()}>
-              {link.title}
-              <Icon name={IconAwesomeEnum.CIRCLE_PLUS} className="ml-1" />
-            </span>
-          )}
+export function NavigationLeft(props: NavigationLeftProps) {
+  const { title, links, link, className = '' } = props
+
+  const { pathname } = useLocation()
+
+  console.log(link, pathname)
+
+  const linkContent = (link: NavigationLeftLinkProps) => (
+    <>
+      {link.icon && (
+        <div className="flex items-center mr-4">
+          <Icon name={link.icon} className="inline-block w-3" />
         </div>
-        {links.map((link, index) =>
-          !link.onClick && !link.subLinks && link.url ? (
-            <Link data-testid="link" key={index} to={link.url} className={linkClassName(link.url, pathname)}>
-              {linkContent(link)}
-            </Link>
-          ) : !link.onClick && link.subLinks ? (
-            <NavigationLeftSubLink key={index} link={link} linkClassName={linkClassName} linkContent={linkContent} />
-          ) : (
-            <div
-              data-testid="link"
-              key={index}
-              onClick={link.onClick}
-              className={linkClassName(link.url || '', pathname)}
-            >
-              {linkContent(link)}
-            </div>
-          )
+      )}
+      {link.title}
+    </>
+  )
+
+  return (
+    <div className={`flex flex-col px-5 ${className}`}>
+      <div className="flex justify-between items-center mb-4">
+        {title && <span className="text-neutral-350 uppercase text-2xs font-bold pl-3">{title}</span>}
+        {link && (
+          <span className="link cursor-pointer text-sm text-brand-500 font-medium" onClick={() => link.onClick()}>
+            {link.title}
+            <Icon name={IconAwesomeEnum.CIRCLE_PLUS} className="ml-1" />
+          </span>
         )}
       </div>
-    )
-  }
+      {links.map((link, index) =>
+        !link.onClick && !link.subLinks && link.url ? (
+          <Link data-testid="link" key={index} to={link.url} className={linkClassName(link.url, pathname)}>
+            {linkContent(link)}
+          </Link>
+        ) : !link.onClick && link.subLinks ? (
+          <NavigationLeftSubLink key={index} link={link} linkClassName={linkClassName} linkContent={linkContent} />
+        ) : (
+          <div
+            data-testid="link"
+            key={index}
+            onClick={link.onClick}
+            className={linkClassName(link.url || '', pathname)}
+          >
+            {linkContent(link)}
+          </div>
+        )
+      )}
+    </div>
+  )
+}

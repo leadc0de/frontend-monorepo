@@ -2,7 +2,7 @@ import {UserEntity} from '../entities/user.entity'
 
 export interface UserState {
   user?: UserEntity
-  token?: any
+  token?: string
   isAuthenticated: boolean
   isLoading: boolean
 }

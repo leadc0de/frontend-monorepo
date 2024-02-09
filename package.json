@@ -2,7 +2,10 @@
   "name": "@frontend/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "dev:backoffice": "nx serve backoffice",
+    "dev:client": "nx serve client"
+  },
   "private": true,
   "dependencies": {
     "@axa-fr/react-oidc": "^7.15.2",

@@ -2,6 +2,7 @@ import {BaseQueryFn, createApi, FetchArgs, fetchBaseQuery, FetchBaseQueryError} 
 import { type RootState } from '@leadcode/state/store'
 import {useStore} from "react-redux";
 import {userActions} from "./user.slice";
+import {UserEntity, UserResponse} from "@leadcode/contracts";
 
 
 const baseQuery = fetchBaseQuery({
@@ -21,11 +22,11 @@ export const userApi = createApi({
     getUser: builder.query<any, void>({
       query: () => `/authentication/me`
     }),
-    getUsers: builder.query<any, void>({
+    getUsers: builder.query<UserResponse, void>({
       query: () => `/users`,
       providesTags: ['users']
     }),
-    getUserById: builder.query<any, string>({
+    getUserById: builder.query<UserEntity, string>({
       query: (userId) => `/users/${userId}`
     }),
     storeUser: builder.mutation<any, any>({
@@ -40,7 +41,8 @@ export const userApi = createApi({
       query: (userId) => ({
         url: `/users/${userId}`,
         method: 'DELETE',
-      })
+      }),
+      invalidatesTags: ['users']
     }),
     login: builder.mutation<any, { username: string, password: string }>({
       query: (credentials) => ({

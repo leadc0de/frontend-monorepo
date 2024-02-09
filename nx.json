@@ -34,7 +34,10 @@
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/.eslintrc.json",
-      "!{projectRoot}/eslint.config.js"
+      "!{projectRoot}/eslint.config.js",
+      "!{projectRoot}/jest.config.[jt]s",
+      "!{projectRoot}/src/test-setup.[jt]s",
+      "!{projectRoot}/test-setup.[jt]s"
     ],
     "sharedGlobals": []
   },
@@ -54,7 +57,35 @@
         "linter": "eslint",
         "unitTestRunner": "vitest"
       }
+    },
+    "@nx/next": {
+      "application": {
+        "style": "scss",
+        "linter": "eslint"
+      }
     }
   },
-  "nxCloudAccessToken": "NTI4ODE2MDgtMTNiMy00Y2E5LTk1MGYtZjhmM2RlMDhiODZjfHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "NTI4ODE2MDgtMTNiMy00Y2E5LTk1MGYtZjhmM2RlMDhiODZjfHJlYWQtd3JpdGU=",
+  "plugins": [
+    {
+      "plugin": "@nx/next/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "devTargetName": "dev",
+        "startTargetName": "start"
+      }
+    },
+    {
+      "plugin": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
+      }
+    },
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    }
+  ]
 }

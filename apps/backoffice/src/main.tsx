@@ -14,7 +14,7 @@ const root = createRoot(container)
 const store = setupStore()
 
 const oidcConfig: OidcConfiguration = {
-  client_id: 'api',
+  client_id: 'frontend',
   redirect_uri: window.location.origin + '/authentication/callback',
   silent_redirect_uri: window.location.origin + '/authentication/silent_callback',
   scope: 'openid profile',

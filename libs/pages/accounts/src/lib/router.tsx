@@ -10,7 +10,7 @@ export const ROUTER_ACCOUNTS: Route[] = [
     component: <PageUsersGeneralFeature />
   },
   {
-    path: '/users/:userId',
+    path: '/users/:userId/general',
     component: <PageUserFeature />
   },
   {

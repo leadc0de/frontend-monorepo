@@ -18,7 +18,7 @@ export function TableRowUser(props: TableRowUserProps) {
 
   return (
     <TableRow
-      link={`/accounts/users/${data.id}`}
+      link={`/accounts/users/${data.id}/general`}
       data={data}
       filter={[]}
       columnsWidth={columnsWidth}

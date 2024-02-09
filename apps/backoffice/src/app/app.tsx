@@ -10,13 +10,14 @@ import { PageAuth } from '@leadcode/pages/login'
 import { ProtectedRoute, useAuth } from '@leadcode/auth'
 import { LoadingScreen } from '@leadcode/ui';
 import {useOidc, useOidcAccessToken} from "@axa-fr/react-oidc";
+import {Toaster} from "react-hot-toast";
 
 export default function App() {
   const { isLoading } = useSelector(getUserState)
   const navigate = useNavigate()
   const dispatch = useDispatch<AppDispatch>()
   const { pathname } = useLocation()
-  const { isAuthenticated, login } = useOidc()
+  const { isAuthenticated, login,  } = useOidc()
   const { accessToken, accessTokenPayload } = useOidcAccessToken()
 
   useEffect(() => {
@@ -45,6 +46,7 @@ export default function App() {
 
   return (
     <div>
+      <Toaster />
       <Routes>
 
         {ROUTER.map((route) =>

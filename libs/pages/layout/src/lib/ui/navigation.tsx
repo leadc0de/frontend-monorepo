@@ -22,7 +22,7 @@ export function Navigation () {
         to={"/home"}
         className="flex w-16 h-16 items-center justify-center border-b z-10 dark:border-neutral-500 border-neutral-200"
       >
-        <img src="/logo.png" className='p-3' alt="" />
+        <img src="/luffy.png" className='p-3' alt="" />
       </Link>
 
       <div className="flex flex-col justify-between px-2.5 py-5 flex-grow">

@@ -7,7 +7,7 @@ export interface LoginProps {
 }
 
 export default function Login({ disabled, onSubmit }: LoginProps) {
-  const { control } = useFormContext()
+  const { control, formState } = useFormContext()
 
   return (
     <div className="flex items-center px-10 lg:p-20 flex-1 h-[calc(100vh_-_80px)] justify-center lg:justify-start">
@@ -22,7 +22,7 @@ export default function Login({ disabled, onSubmit }: LoginProps) {
               name="email"
               control={control}
               rules={{
-                required: 'Veuillez entrer une valeur'
+                required: 'Veuillez entrer une valeur',
               }}
               render={({ field, fieldState: { error } }) => (
                 <InputText
@@ -61,7 +61,7 @@ export default function Login({ disabled, onSubmit }: LoginProps) {
               </div>
               <div className="flex justify-end">
                 <Button
-                  disabled={disabled}
+                  disabled={!formState.isValid}
                   onClick={onSubmit}
                 >
                   Se connecter

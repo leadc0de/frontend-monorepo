@@ -1,7 +1,7 @@
-import {UserEntity} from '../entities/user.entity'
+import { type JwtEntity } from '../entities'
 
 export interface UserState {
-  user?: UserEntity
+  user?: JwtEntity
   token?: string
   isAuthenticated: boolean
   isLoading: boolean

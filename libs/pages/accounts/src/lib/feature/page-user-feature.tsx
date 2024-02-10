@@ -30,7 +30,6 @@ export function PageUserFeature () {
         padding: 10
       }
     })
-    console.log("dada")
     setTimeout(() => {
       setLoading(false)
     }, 3000)

@@ -10,7 +10,6 @@ export function PageUserDangerZoneFeature() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    console.log(result)
     if (result.isSuccess) {
       toast.success('The user has been deleted', {
         position: 'top-center',

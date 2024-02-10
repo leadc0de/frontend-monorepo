@@ -1,6 +1,8 @@
 import {Controller, FormProvider, useForm} from 'react-hook-form'
 import {InputSelect, InputText, ModalCrud} from '@leadcode/ui'
 import { useGetRolesQuery, useStoreUserMutation } from '@leadcode/domains/users'
+import {useEffect} from "react"
+import { toast } from 'react-hot-toast'
 
 export interface CreateUserModalProps {
   onClose: () => void
@@ -10,11 +12,11 @@ export function CreateUserModal({ onClose }: CreateUserModalProps) {
   const methods = useForm({
     mode: 'onChange',
     defaultValues: {
-      email: 'prout@gmail.com',
-      username: 'prout',
-      firstname: 'Prout',
-      lastname: 'Land',
-      password: 'proutprout',
+      email: '',
+      username: '',
+      firstname: '',
+      lastname: '',
+      password: '',
       roleIds: []
     }
   })
@@ -24,8 +26,19 @@ export function CreateUserModal({ onClose }: CreateUserModalProps) {
 
   const onSubmit = methods.handleSubmit((data) => {
     createUser(data)
-    onClose()
   })
+
+  useEffect(() => {
+    if (['rejected', 'fulfilled'].includes(result.status)) {
+      onClose()
+
+      if (result.status === 'rejected') {
+        toast.error('Error creating user', { position: 'top-center' })
+      } else {
+        toast.success('The user has been created', { position: 'top-center' })
+      }
+    }
+  }, [result]);
 
   return (
     <FormProvider {...methods}>
@@ -34,7 +47,6 @@ export function CreateUserModal({ onClose }: CreateUserModalProps) {
         description="Créer un nouveau utilisateur pour l'application"
         onClose={onClose}
         howItWorks={<div>Test</div>}
-
         onDelete={() => console.log('test')}
         onSubmit={onSubmit}
       >

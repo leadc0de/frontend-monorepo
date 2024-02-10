@@ -1,4 +1,4 @@
-import {PageUserDangerZone} from '../ui/page-user-danger-zone'
+import {PageUserDangerZone} from '../ui/users/page-user-danger-zone'
 import {useDeleteUserByIdMutation} from "@leadcode/domains/users";
 import {useEffect} from "react";
 import {useNavigate, useParams} from "react-router";

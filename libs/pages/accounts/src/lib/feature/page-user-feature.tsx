@@ -1,6 +1,6 @@
 import { useGetUserByIdQuery } from "@leadcode/domains/users"
 import { useParams } from "react-router"
-import { PageUser } from "../ui/page-user"
+import { PageUser } from "../ui/users/page-user"
 import { useEffect, useState } from "react"
 import {FormProvider, useForm} from "react-hook-form";
 import toast from "react-hot-toast";

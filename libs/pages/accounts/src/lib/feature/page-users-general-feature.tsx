@@ -1,4 +1,4 @@
-import {PageUsersGeneral} from '../ui/page-users-general'
+import {PageUsersGeneral} from '../ui/users/page-users-general'
 import {useGetUsersQuery} from '@leadcode/domains/users'
 
 export function PageUsersGeneralFeature() {

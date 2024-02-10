@@ -17,7 +17,6 @@ export const ROUTER_ACCOUNTS: Route[] = [
     path: '/users/:userId/danger-zone',
     component: <PageUserDangerZoneFeature />
   },
-
   {
     path: '/roles',
     component: <PageRolesGeneralFeature />

@@ -1,4 +1,4 @@
-import {PageRolesGeneral} from "../ui/page-roles-general";
+import {PageRolesGeneral} from "../ui/roles/page-roles-general";
 import {useGetRolesQuery} from "@leadcode/domains/users";
 
 export function PageRolesGeneralFeature () {

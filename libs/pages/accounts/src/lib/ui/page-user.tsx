@@ -23,7 +23,7 @@ export function PageUser({ user, onSubmit, loading }: PageUserProps) {
     },
     {
       title: 'Danger zone',
-      icon: IconAwesomeEnum.SKULL,
+      icon: 'game-icons:death-skull',
       url: `/accounts/users/${userId}/danger-zone`,
     }
   ]

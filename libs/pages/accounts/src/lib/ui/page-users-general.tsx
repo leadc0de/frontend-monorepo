@@ -8,7 +8,7 @@ export interface PageUsersGeneralProps {
 }
 
 export function PageUsersGeneral({ users, isLoading }: PageUsersGeneralProps) {
-  const columnWidth = '20% 30% 15% 10%'
+  const columnWidth = '20% 15% 15% 10%'
   const tableHead: TableHeadProps<UserEntity>[] = [
     {
       title: 'Email'
@@ -25,7 +25,7 @@ export function PageUsersGeneral({ users, isLoading }: PageUsersGeneralProps) {
   ]
 
   return (
-    <div className="bg-white rounded-t-sm mt-2">
+    <div className="bg-white rounded-sm mt-2 overflow-hidden">
       { users && users.length ? (
         <Table
           dataHead={tableHead}

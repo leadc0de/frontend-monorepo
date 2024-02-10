@@ -20,7 +20,7 @@ export function PageUserDangerZone({ deleteUser, user }: PageUserDangerZoneProps
     },
     {
       title: 'Danger zone',
-      icon: IconAwesomeEnum.SKULL,
+      icon: 'game-icons:death-skull',
       url: `/accounts/users/${userId}/danger-zone`,
     }
   ]

@@ -67,7 +67,7 @@ export function ModalCrud(props: ModalCrudProps) {
             {howItWorks}
             <Popover.Close className="absolute top-4 right-4">
               <button type="button">
-                <Icon name="icon-solid-xmark text-lg leading-4 font-thin text-neutral-400" />
+                <Icon name="ep:close" className="text-lg leading-4 font-thin text-neutral-400" />
               </button>
             </Popover.Close>
           </Popover.Content>

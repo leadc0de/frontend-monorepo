@@ -25,14 +25,14 @@ export function PageUsersGeneral({ users, isLoading }: PageUsersGeneralProps) {
   ]
 
   return (
-    <div className="bg-white rounded-sm mt-2 overflow-hidden">
-      { users && users.length ? (
+    <div className="bg-white rounded mt-2 overflow-hidden">
+      {users && users.length ? (
         <Table
           dataHead={tableHead}
           data={users}
           columnsWidth={columnWidth}
         >
-          { users.map((user) => (
+          {users.map((user) => (
             <TableRowUser
               data={user}
               dataHead={tableHead}
@@ -54,7 +54,6 @@ export function PageUsersGeneral({ users, isLoading }: PageUsersGeneralProps) {
           </Button>
         </EmptyState>
       )}
-
     </div>
   )
 }

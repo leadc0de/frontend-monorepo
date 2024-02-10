@@ -52,22 +52,6 @@ export function CreateUserModal({ onClose }: CreateUserModalProps) {
       >
         <div className="flex flex-col gap-4">
           <Controller
-            name="email"
-            rules={{
-              required: 'Veuillez indiquer une valeur'
-            }}
-            render={({ field, fieldState }) => (
-              <InputText
-                name="email"
-                value={field.value}
-                onChange={field.onChange}
-                error={fieldState.error?.message}
-                label="Email"
-              />
-            )}
-          />
-
-          <Controller
             name="username"
             rules={{
               required: 'Veuillez indiquer une valeur'
@@ -82,24 +66,6 @@ export function CreateUserModal({ onClose }: CreateUserModalProps) {
               />
             )}
           />
-
-          <Controller
-            name="password"
-            rules={{
-              required: 'Veuillez indiquer une valeur'
-            }}
-            render={({ field, fieldState }) => (
-              <InputText
-                name="password"
-                value={field.value}
-                onChange={field.onChange}
-                error={fieldState.error?.message}
-                label="Mot de passe"
-                type="password"
-              />
-            )}
-          />
-
           <div className="grid grid-cols-2 gap-3">
             <Controller
               name="firstname"
@@ -132,6 +98,40 @@ export function CreateUserModal({ onClose }: CreateUserModalProps) {
               )}
             />
           </div>
+          <Controller
+            name="email"
+            rules={{
+              required: 'Veuillez indiquer une valeur'
+            }}
+            render={({ field, fieldState }) => (
+              <InputText
+                name="email"
+                value={field.value}
+                onChange={field.onChange}
+                error={fieldState.error?.message}
+                label="Email"
+              />
+            )}
+          />
+
+
+          <Controller
+            name="password"
+            rules={{
+              required: 'Veuillez indiquer une valeur'
+            }}
+            render={({ field, fieldState }) => (
+              <InputText
+                name="password"
+                value={field.value}
+                onChange={field.onChange}
+                error={fieldState.error?.message}
+                label="Mot de passe"
+                type="password"
+              />
+            )}
+          />
+
           {rolesResponse && (
             <Controller
               name="roleIds"

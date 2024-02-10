@@ -19,7 +19,7 @@ export function PageRolesGeneral({ roles, isLoading }: PageRolesGeneralProps) {
   ]
 
   return (
-    <div className="bg-white rounded-t-sm mt-2">
+    <div className="bg-white rounded mt-2">
       {roles && roles.length ? (
         <Table
           dataHead={tableHead}

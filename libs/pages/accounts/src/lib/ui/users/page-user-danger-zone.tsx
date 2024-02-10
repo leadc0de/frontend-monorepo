@@ -1,36 +1,23 @@
 import {UserEntity} from "@leadcode/contracts";
-import {BlockContent, BlockContentDelete, Header, NavigationLeft} from "@leadcode/ui";
-import {IconAwesomeEnum, IconEnum} from "@leadcode/enums";
+import {BlockContentDelete, NavigationLeft} from "@leadcode/ui";
 import {useParams} from "react-router";
-import {useFormContext} from "react-hook-form";
+import { getUserLinks } from "./config";
 
 export interface PageUserDangerZoneProps {
   deleteUser: () => void
   user?: UserEntity
 }
 
-export function PageUserDangerZone({ deleteUser, user }: PageUserDangerZoneProps) {
+export function PageUserDangerZone(props: PageUserDangerZoneProps) {
   const { userId = '' } = useParams()
-
-  const userLinks = [
-    {
-      title: 'General',
-      icon: IconAwesomeEnum.WHEEL,
-      url: `/accounts/users/${userId}/general`,
-    },
-    {
-      title: 'Danger zone',
-      icon: 'game-icons:death-skull',
-      url: `/accounts/users/${userId}/danger-zone`,
-    }
-  ]
+  const userLinks = getUserLinks(userId)
 
   return (
     <div className="bg-white h-full rounded-t-sm">
       <div className="grid grid-cols-12 divide-x h-full">
         <div className="col-span-2 p-4 py-10">
           <NavigationLeft
-            title={"Utilisateur"}
+            title="Utilisateur"
             links={userLinks}
           />
         </div>
@@ -39,7 +26,7 @@ export function PageUserDangerZone({ deleteUser, user }: PageUserDangerZoneProps
           <BlockContentDelete
             title="Delete user"
             ctaLabel="Delete user"
-            customModalConfirmation={deleteUser}
+            customModalConfirmation={props.deleteUser}
           />
         </div>
       </div>

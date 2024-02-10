@@ -1,9 +1,8 @@
 import {UserEntity} from "@leadcode/contracts";
-import {IconAwesomeEnum} from "@leadcode/enums";
 import {BlockContent, Button, ButtonSize, ButtonStyle, InputText, NavigationLeft} from "@leadcode/ui";
 import {useParams} from "react-router";
 import {Controller, useFormContext} from "react-hook-form";
-import {FormEventHandler} from "react";
+import { getUserLinks } from "./config";
 
 export interface PageUserProps {
   user?: UserEntity
@@ -11,31 +10,19 @@ export interface PageUserProps {
   loading: boolean
 }
 
-export function PageUser({ user, onSubmit, loading }: PageUserProps) {
-  const { userId = '' } = useParams()
-  const { control, formState, watch } = useFormContext()
+export function PageUser(props: PageUserProps) {
+  const { control, watch } = useFormContext()
 
-  const userLinks = [
-    {
-      title: 'General',
-      icon: IconAwesomeEnum.WHEEL,
-      url: `/accounts/users/${userId}/general`,
-    },
-    {
-      title: 'Danger zone',
-      icon: 'game-icons:death-skull',
-      url: `/accounts/users/${userId}/danger-zone`,
-    }
-  ]
+  const { userId = '' } = useParams()
+  const userLinks = getUserLinks(userId)
 
   return (
-    <div className="bg-white h-full rounded-t-sm">
+    <div className="bg-white h-full rounded">
       <div className="grid grid-cols-12 divide-x h-full">
         <div className="col-span-2 p-4 py-10">
           <NavigationLeft
-            title={"Utilisateur"}
+            title="Utilisateur"
             links={userLinks}
-
           />
         </div>
 
@@ -45,7 +32,11 @@ export function PageUser({ user, onSubmit, loading }: PageUserProps) {
           <BlockContent title="User profile" className="mt-4">
             <div className="flex items-center">
               <div>
-                <img className="rounded-full w-16 h-16 border border-neutral-50" src={'https://i.pinimg.com/236x/2d/61/31/2d61311fab48fb4feff08f6334afc629.jpg'} alt="User profile" />
+                <img
+                  className="rounded-full w-16 h-16 border border-neutral-50"
+                  src="https://i.pinimg.com/236x/2d/61/31/2d61311fab48fb4feff08f6334afc629.jpg"
+                  alt="User profile"
+                />
               </div>
               <div className="ml-5">
                 <p className="text-neutral-400 font-medium ml-5">
@@ -64,7 +55,7 @@ export function PageUser({ user, onSubmit, loading }: PageUserProps) {
                     <InputText
                       className='w-full mr-1.5'
                       name={field.name}
-                      label="First name"
+                      label="Prénon"
                       onChange={field.onChange}
                       value={field.value}
                       error={error?.message}
@@ -81,7 +72,7 @@ export function PageUser({ user, onSubmit, loading }: PageUserProps) {
                       name={field.name}
                       onChange={field.onChange}
                       value={field.value}
-                      label="Last name"
+                      label="Nom de famille"
                       error={error?.message}
                     />
                   )}
@@ -130,9 +121,9 @@ export function PageUser({ user, onSubmit, loading }: PageUserProps) {
               size={ButtonSize.LARGE}
               style={ButtonStyle.BASIC}
               type='submit'
-              onClick={onSubmit}
+              onClick={props.onSubmit}
               //disabled={!formState.isValid}
-              loading={loading}
+              loading={props.loading}
             >
               Save
             </Button>

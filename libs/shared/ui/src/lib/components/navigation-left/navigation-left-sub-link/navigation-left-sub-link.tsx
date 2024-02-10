@@ -1,12 +1,13 @@
-import { ReactNode, useEffect, useState } from "react"
+import { Fragment, ReactNode, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom"
-import { NavigationLeftLinkProps } from "../navigation-left"
-import { Icon } from "../../icons/icon"
+import { NavigationLeftLinkProps } from "@leadcode/ui"
+import { Icon } from "@leadcode/ui"
+import { classNames } from "@leadcode/utils";
 
 export interface NavigationLeftSubLinkProps {
   linkContent: (link: NavigationLeftLinkProps) => ReactNode
   link: NavigationLeftLinkProps
-  linkClassName: (pathname: string, url?: string, badge?: string) => string
+  linkClassName: (pathname: string, link: NavigationLeftLinkProps, badge?: string) => string
 }
 
 export function NavigationLeftSubLink(props: NavigationLeftSubLinkProps) {
@@ -18,7 +19,7 @@ export function NavigationLeftSubLink(props: NavigationLeftSubLinkProps) {
   useEffect(() => {
     // default open sub links if is active
     link.subLinks?.forEach((currentLink) => {
-      if (linkClassName(pathname, currentLink.url)?.includes('is-active')) {
+      if (linkClassName(pathname, currentLink)?.includes('is-active')) {
         setOpen(true)
       }
     })
@@ -36,29 +37,41 @@ export function NavigationLeftSubLink(props: NavigationLeftSubLinkProps) {
   }
 
   return (
-    <>
+    <Fragment>
       <div
         data-testid="link"
         onClick={() => setOpen(!open)}
-        className={`justify-between select-none ${linkClassName(pathname, link.url)}`}
+        className={classNames(
+          'justify-between select-none',
+          linkClassName(pathname, link)
+        )}
       >
         <span className="flex truncate">{linkContent(link)}</span>
         <Icon
           name="icon-solid-angle-down"
-          className={`transition-transform ease-out duration-200 ${open ? 'rotate-180' : ''}`}
+          className={classNames(
+            'transition-transform ease-out duration-200',
+            open ? 'rotate-180' : ''
+          )}
         />
       </div>
       {link.subLinks && (
         <div
           data-testid="sub-links"
-          className={`w-full ${open ? 'opacity-100 h-full' : 'opacity-0 h-0 pointer-events-none'}`}
+          className={classNames(
+            'w-full',
+            open ? 'opacity-100 h-full' : 'opacity-0 h-0 pointer-events-none'
+          )}
         >
           {link.subLinks.map((subLink, index) =>
             subLink.onClick ? (
               <div
                 data-testid="sub-link"
                 key={index}
-                className={`${linkClassName(pathname, subLink.url, subLink.badge)} pl-[37px]`}
+                className={classNames(
+                  'pl-[37px]',
+                  linkClassName(pathname, subLink, subLink.badge)
+                )}
                 onClick={() => subLink.onClick && subLink.onClick()}
               >
                 {subLink.title}
@@ -69,7 +82,10 @@ export function NavigationLeftSubLink(props: NavigationLeftSubLinkProps) {
                 data-testid="sub-link"
                 key={index}
                 to={subLink.url || ''}
-                className={`flex ${linkClassName(pathname, subLink.url, subLink.badge)} pl-[37px]`}
+                className={classNames(
+                  'flex pl-[37px]',
+                  linkClassName(pathname, subLink)
+                )}
               >
                 {subLink.title}
                 {subLink.badge && badge(subLink.badge)}
@@ -78,6 +94,6 @@ export function NavigationLeftSubLink(props: NavigationLeftSubLinkProps) {
           )}
         </div>
       )}
-    </>
+    </Fragment>
   )
 }

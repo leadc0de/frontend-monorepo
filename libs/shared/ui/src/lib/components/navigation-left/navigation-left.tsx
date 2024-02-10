@@ -38,8 +38,6 @@ export function NavigationLeft(props: NavigationLeftProps) {
 
   const { pathname } = useLocation()
 
-  console.log(link, pathname)
-
   const linkContent = (link: NavigationLeftLinkProps) => (
     <>
       {link.icon && (

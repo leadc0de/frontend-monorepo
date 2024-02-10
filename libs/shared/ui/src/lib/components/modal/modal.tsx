@@ -37,7 +37,6 @@ export const Modal = (props: ModalProps) => {
   const { setAlertModalChoice, enableAlertClickOutside, alertClickOutside, alertModalChoice } = useContext(ModalContext)
 
   useEffect(() => {
-    console.log(open)
     if (!open)
       // when the modal just open nothing should be dirty in the modal
       enableAlertClickOutside && enableAlertClickOutside(false)
@@ -97,7 +96,7 @@ export const Modal = (props: ModalProps) => {
               {buttonClose && (
                   <Dialog.Close className="absolute top-4 right-4">
                 <span className="flex w-7 h-7 items-center justify-center bg-neutral-200 text-neutral-350 hover:text-neutral-400 hover:bg-neutral-250 ease-out duration-300 rounded-full">
-                  <Icon name="icon-solid-xmark" />
+                  <Icon name="ep:close-bold" />
                 </span>
                   </Dialog.Close>
               )}

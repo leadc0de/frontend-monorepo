@@ -52,9 +52,6 @@ export function ButtonIcon ({
     disabled || loading ? 'btn--disabled' : ''
   } ${active ? 'btn--active' : ''} ${className}`
 
-	console.log(link, defineClass, style);
-
-
   return (
 		<>
 			{!link &&

@@ -12,8 +12,6 @@ export function Container({ children }: PropsWithChildren) {
   const [title, setTitle] = useState<string | undefined>()
   const { openModal, closeModal } = useModal()
 
-  console.log(pathname.endsWith('users'));
-
   useEffect(() => {
     const t = match(pathname)
       .with(P.when(x => x.includes('/accounts/users')), () => 'users')
@@ -37,13 +35,13 @@ export function Container({ children }: PropsWithChildren) {
 
   const tabsItems = [
     {
-      icon: <Icon name={IconAwesomeEnum.LAYER_GROUP} />,
+      icon: <Icon name={'line-md:account'} />,
       name: 'Utilisateurs',
       active: isUserTab,
       link: '/accounts/users'
     },
     {
-      icon: <Icon name="icon-solid-browser" className="text-sm text-inherit" />,
+      icon: <Icon name="line-md:text-box-multiple" className="text-sm text-inherit" />,
       name: 'Roles',
       active: isRoleTab,
       link: `/accounts/roles`,
@@ -53,6 +51,7 @@ export function Container({ children }: PropsWithChildren) {
   const contentTabs = (
     <div className="flex justify-center items-center px-5 border-l h-14 border-neutral-200">
       <Button
+        iconRight={'material-symbols:add'}
         onClick={() => {
           openModal({
             content: (
@@ -86,7 +85,7 @@ export function Container({ children }: PropsWithChildren) {
               title={title}
               icon={IconEnum.APPLICATION}
               iconClassName='w-16'
-              actions={<div>prout</div>}
+              //actions={<div>prout</div>}
             />
             <Tabs
               items={tabsItems}
@@ -96,7 +95,7 @@ export function Container({ children }: PropsWithChildren) {
           </>
         )}
 
-        <div className=" h-full">
+        <div className="h-full rounded-md">
           { children }
         </div>
 

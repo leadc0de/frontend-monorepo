@@ -13,7 +13,6 @@ export function useModal () {
   const { setOpenModal, setContentModal, setOptionsModal, enableAlertClickOutside } = useContext(ModalContext)
 
   useEffect(() => {
-    console.log(modal)
     if (modal) {
       setOpenModal(true)
       if (modal.options) setOptionsModal(modal.options)

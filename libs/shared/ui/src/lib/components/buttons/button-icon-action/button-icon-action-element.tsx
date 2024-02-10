@@ -14,14 +14,12 @@ export interface ButtonIconActionElementProps {
 	triggerClassName?: string
 }
 
-export function ButtonIconActionElement ({ 
+export function ButtonIconActionElement ({
 	triggerTooltip, triggerClassName = '',
-	iconLeft, iconRight, 
-	onClick, 
+	iconLeft, iconRight,
+	onClick,
 	menus, menusClassName = '', menuAlign = MenuAlign.START
 }: ButtonIconActionElementProps) {
-	console.log(menus);
-	
 	const [open, setOpen] = useState(false)
 
 	function tooltipWrapper (content: ReactNode, withRightBorder = false) {

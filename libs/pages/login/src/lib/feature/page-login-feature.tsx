@@ -24,7 +24,6 @@ export default function PageLoginFeature() {
   })
 
   useEffect(() => {
-    console.log(result)
     if (result.status === 'fulfilled') {
 
 
@@ -42,7 +41,6 @@ export default function PageLoginFeature() {
   })
 
   const onSubmit = methods.handleSubmit((data) => {
-    console.log(data)
     login({ username: data.email, password: data.password })
   })
 
